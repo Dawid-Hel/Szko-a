@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+ 
+void funkcja(int tablica[], int n, int x, int y) {
+    for (int i = 0; i < n; i++) {
+        tablica[i] = rand() % (y - x + 1) + x;
+    }
+}
+
+
+void Sort_przez_wstrz( int tablica[], int size )
+{
+    int temp;
+    int j;
+   
+    for(int i = 1; i < size; i++ )
+    {
+        temp = tablica[ i ];
+       
+        for( j = i - 1; j >= 0 && tablica[ j ] > temp; j-- )
+             tablica[ j + 1 ] = tablica[ j ];
+       
+        tablica[ j + 1 ] = temp;
+    }
+}
+ 
+int main() {
+    const int n = 12;
+    const int x = 12;
+    const int y = 25;
+    int tablica[n];
+    srand(time(NULL));
+    funkcja(tablica, n, x, y);
+    
+    cout<<"Przed sortowaniem: ";
+    for (int i = 0; i < n; i++) {
+        cout << tablica[i] << " ";
+    }
+    cout<<"\n";
+    
+    Sort_przez_wstrz(tablica, n);
+    
+    cout<< "Po sortowaniu: ";
+    for(int i; i < n; i++){
+        cout<< tablica[i]<< " ";
+    }
+    cout<<"\n";
+
+    return 0;
+}
