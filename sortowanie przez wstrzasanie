@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+void funkcja(int tablica[], int n, int x, int y) {
+    for (int i = 0; i < n; i++) {
+        tablica[i] = rand() % (y - x + 1) + x;
+    }
+}
+
+void sort_przez_wst(int* tablica, int n) {
+    int lewy = 0, prawy = n - 1;
+    bool zamiana = true;
+    while (zamiana == true) { 
+        zamiana = false;
+        for (int i = lewy; i < prawy; i++) {
+            if (tablica[i] > tablica[i + 1]) {
+                swap(tablica[i], tablica[i + 1]);
+                zamiana = true;
+            }
+        }
+        prawy = prawy - 1;
+        for (int i = prawy; i > lewy; i--) {
+            if (tablica[i] < tablica[i - 1]) {
+                swap(tablica[i], tablica[i - 1]);
+                zamiana = true;
+            }
+        }
+        lewy = lewy + 1;
+    }
+}
+
+int main() {
+    const int n = 12;
+    const int x = 12;
+    const int y = 25;
+    int tablica[n];
+    srand(time(NULL));
+    funkcja(tablica, n, x, y);
+    
+    cout<<"Przed sortowaniem: ";
+    for (int i = 0; i < n; i++) {
+        cout << tablica[i] << " ";
+    }
+    cout<< "\n";
+    
+    sort_przez_wst(tablica, n);
+    
+    cout<<"Po sortowaniu: ";
+    for(int i = 0; i<n; i++){
+        cout<< tablica[i]<< " "; 
+    }
+    cout<< "\n";
+ 
+    return 0;
+}
