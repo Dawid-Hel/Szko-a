@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+ 
+void funkcja(int tablica[], int n, int x, int y) {
+    for (int i = 0; i < n; i++) {
+        tablica[i] = rand() % (y - x + 1) + x;
+    }
+}
+ 
+int *pom;
+ 
+void scal(int tab[], int lewy, int srodek, int prawy){
+    int i = lewy, j = srodek + 1;
+ 
+    for(int i = lewy;i<=prawy; i++) 
+    pom[i] = tab[i];  
+    for(int k=lewy;k<=prawy;k++) 
+    if(i<=srodek)
+    if(j <= prawy)
+    if(pom[j]<pom[i]){
+       tab[k] = pom[j++]; 
+    }
+    else{
+         tab[k] = pom[i++];
+    }
+    else{
+        tab[k] = pom[i++];
+    }
+  else{
+      tab[k] = pom[j++];
+  }
+}
+ 
+void sort_przez_scal(int tablica[], int lewy, int prawy) {
+    if (prawy <= lewy) {
+        return;
+    }
+    int srodek = (prawy + lewy) / 2;
+    sort_przez_scal(tablica, lewy, srodek);
+    sort_przez_scal(tablica, srodek + 1, prawy);
+ 
+    scal(tablica, lewy, srodek, prawy);
+}
+ 
+int main() {
+    const int n = 12;
+    const int x = 12;
+    const int y = 25;
+    int *tablica = new int[n];
+    pom = new int[n];
+    srand(time(NULL));
+    funkcja(tablica, n, x, y);
+ 
+    cout << "Przed sortowaniem: ";
+    for (int i = 0; i < n; i++) {
+        cout << tablica[i] << " ";
+    }
+    cout << "\n";
+ 
+    sort_przez_scal(tablica, 0, n - 1);
+ 
+    cout << "Po sortowaniu: ";
+    for (int i = 0; i < n; i++) {
+        cout << tablica[i] << " ";
+    }
+    cout << "\n";
+ 
+    return 0;
+}
