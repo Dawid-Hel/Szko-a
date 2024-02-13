@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+void funkcja(int tablica[], int n, int x, int y) {
+    for (int i = 0; i < n; i++) {
+        tablica[i] = rand() % (y - x + 1) + x;
+    }
+}
+
+int main() {
+    const int n = 12;
+    const int x = 12;
+    const int y = 25;
+    int tablica[n];
+    srand(time(NULL));
+    funkcja(tablica, n, x, y);
+
+    for (int i = 0; i < n; i++) {
+        cout << tablica[i] << " ";
+    }
+    cout << endl;
+
+    int szukana;
+    cout << "Podaj liczbę do wyszukania: ";
+    cin >> szukana;
+
+    int i = 0;
+    
+    while(tablica[i]!=szukana && tablica[i]!=-1) ++i;
+    
+    if(tablica[i] == -1) 
+       cout<<"Szukany element nie występuje w tablicy"<<endl;
+    else
+       cout<<"Liczba "<<szukana<<" znajduje się na pozycji "<<i+1<<endl;
+    return 0;
+}
