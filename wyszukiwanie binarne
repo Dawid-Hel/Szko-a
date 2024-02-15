@@ -1,0 +1,88 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+void funkcja(int tablica[], int n, int x, int y) {
+    for (int i = 0; i < n; i++) {
+        tablica[i] = rand() % (y - x + 1) + x;
+    }
+}
+
+
+
+void quick_sort(int *tablica, int lewy, int prawy) {
+    if(prawy <= lewy) return;
+    
+    int i = lewy - 1, j = prawy + 1; 
+    int pivot = tablica[(lewy + prawy) / 2]; 
+    
+    while (1) {
+        while (pivot > tablica[++i]);
+        while (pivot < tablica[--j]);
+        if(i <= j)
+            swap(tablica[i], tablica[j]);
+        else
+            break;
+    }
+
+    if(j > lewy)
+        quick_sort(tablica, lewy, j);
+    if(i < prawy)
+        quick_sort(tablica, i, prawy);
+}
+
+
+
+int szukaj(int tablica[], int l, int p, int szukana) {
+    if (l > p)
+        return -1;
+
+    int sr = (l + p) / 2;
+
+    if(szukana == tablica[sr])
+        return sr;
+    else if (szukana < tablica[sr])
+        return szukaj(tablica, l, sr - 1, szukana);
+    else
+        return szukaj(tablica, sr + 1, p, szukana);
+}
+
+
+
+
+int main() {
+    const int n = 12;
+    const int x = 12;
+    const int y = 25;
+    int tablica[n];
+    srand(time(NULL));
+    funkcja(tablica, n, x, y);
+    
+    cout<< "Przed sortowaniem: ";
+    for(int i = 0; i < n; i++) {
+        cout << tablica[i] << " ";
+    }
+    cout<< "\n";
+    
+    quick_sort(tablica, 0, n - 1);
+    
+    cout<< "Po sortowaniu: ";
+    for (int i = 0; i < n; i++) {
+        cout << tablica[i] << " ";
+    }
+    cout<<"\n";
+    
+    int szukana;
+    cout<<"Podaj liczbe do wyszukania: ";
+    cin >> szukana;
+
+    int index = szukaj(tablica, 0, n - 1, szukana);
+    if(index != -1) {
+        cout<<"Liczba " << szukana<< " zostala znaleziona pod indekse "<< index << endl;
+    } else{
+        cout<< "Liczba " <<szukana<<" nie została znaleziona"<< endl;
+    }
+
+    return 0;
+}
