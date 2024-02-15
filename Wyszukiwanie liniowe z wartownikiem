@@ -33,6 +33,6 @@ int main() {
     if(tablica[i] == -1) 
        cout<<"Szukany element nie występuje w tablicy"<<endl;
     else
-       cout<<"Liczba "<<szukana<<" znajduje się na pozycji "<<i+1<<endl;
+       cout<<"Liczba "<<szukana<<" znajduje się na pozycji "<<i<<endl;
     return 0;
 }
