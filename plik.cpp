@@ -120,3 +120,42 @@ void quick_sort(int *tablica, int lewy, int prawy)
 }
 
 
+int szuk_bin(int tablica[], int l, int p, int szukana) {
+    if (l > p)
+        return -1;
+
+    int sr = (l + p) / 2;
+
+    if(szukana == tablica[sr])
+        return sr;
+    else if (szukana < tablica[sr])
+        return szuk_bin(tablica, l, sr - 1, szukana);
+    else
+        return szuk_bin(tablica, sr + 1, p, szukana);
+}
+
+
+int szuk_liniowe(Element tablica[], int szuk_klucz, int rozmiar) {
+    for(int i = 0; i < rozmiar; ++i) {
+        if(tablica[i].klucz == szuk_klucz) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int szuk_skok(int* lista, int n, int szukaj) {
+    int lin = sqrt(n);
+    int index = 0;
+    while (lista[min(lin, n) - 1] < szukaj) {
+        index = lin;
+        lin += sqrt(n);
+        if (index >= n)
+            return -1;
+    }
+    if (lista[index] == szukaj) {
+        return index;
+    } else {
+        return -1;
+    }
+}
