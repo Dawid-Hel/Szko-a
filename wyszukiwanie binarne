@@ -34,7 +34,7 @@ void quick_sort(int *tablica, int lewy, int prawy) {
 
 
 
-int szukaj(int tablica[], int l, int p, int szukana) {
+int szuk_bin(int tablica[], int l, int p, int szukana) {
     if (l > p)
         return -1;
 
@@ -43,9 +43,9 @@ int szukaj(int tablica[], int l, int p, int szukana) {
     if(szukana == tablica[sr])
         return sr;
     else if (szukana < tablica[sr])
-        return szukaj(tablica, l, sr - 1, szukana);
+        return szuk_bin(tablica, l, sr - 1, szukana);
     else
-        return szukaj(tablica, sr + 1, p, szukana);
+        return szuk_bin(tablica, sr + 1, p, szukana);
 }
 
 
@@ -77,7 +77,7 @@ int main() {
     cout<<"Podaj liczbe do wyszukania: ";
     cin >> szukana;
 
-    int index = szukaj(tablica, 0, n - 1, szukana);
+    int index = szuk_bin(tablica, 0, n - 1, szukana);
     if(index != -1) {
         cout<<"Liczba " << szukana<< " zostala znaleziona pod indekse "<< index << endl;
     } else{
