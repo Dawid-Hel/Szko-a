@@ -159,3 +159,19 @@ int szuk_skok(int* lista, int n, int szukaj) {
         return -1;
     }
 }
+
+int szuk_liniowe_z_war(Element tablica[], int szuk_klucz, int rozmiar) {
+    tablica[rozmiar].klucz = szuk_klucz;
+    int i = 0;
+    
+    while(tablica[i].klucz!=szuk_klucz) {
+        ++i;
+        }
+        
+        if(i < rozmiar){
+            return i;
+        }else{
+            return -1;
+        }
+
+}
