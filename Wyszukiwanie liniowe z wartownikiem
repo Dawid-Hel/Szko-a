@@ -1,38 +1,63 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
-void funkcja(int tablica[], int n, int x, int y) {
-    for (int i = 0; i < n; i++) {
-        tablica[i] = rand() % (y - x + 1) + x;
+struct Element {
+    int klucz;
+};
+
+
+
+void funkcja(Element tablica[], int n, int x, int y) {
+    for(int i = 0; i < n; i++) {
+        tablica[i].klucz = rand() % (y - x + 1) + x;
     }
+}
+
+
+
+int szuk_liniowe_z_war(Element tablica[], int szuk_klucz, int rozmiar) {
+    tablica[rozmiar].klucz = szuk_klucz;
+    int i = 0;
+    
+    while(tablica[i].klucz!=szuk_klucz) {
+        ++i;
+        }
+        
+        if(i < rozmiar){
+            return i;
+        }else{
+            return -1;
+        }
+
 }
 
 int main() {
     const int n = 12;
     const int x = 12;
     const int y = 25;
-    int tablica[n];
+    const int rozmiar = n;
+    const int min_r = x;
+    const int max_r = y;
+    Element tablica[n];
     srand(time(NULL));
     funkcja(tablica, n, x, y);
 
-    for (int i = 0; i < n; i++) {
-        cout << tablica[i] << " ";
+    for(int i = 0; i < n; i++) {
+        cout << tablica[i].klucz << " ";
     }
-    cout << endl;
+    cout<<"\n";
 
-    int szukana;
-    cout << "Podaj liczbę do wyszukania: ";
-    cin >> szukana;
+    int szukanyk;
+    cout<<"Podaj szukana liczbe: ";
+    cin>> szukanyk;
 
-    int i = 0;
-    
-    while(tablica[i]!=szukana && tablica[i]!=-1) ++i;
-    
-    if(tablica[i] == -1) 
-       cout<<"Szukany element nie występuje w tablicy"<<endl;
-    else
-       cout<<"Liczba "<<szukana<<" znajduje się na pozycji "<<i<<endl;
+    int index = szuk_liniowe_z_war(tablica, szukanyk, rozmiar);
+
+    if(index != -1) {
+        cout << "Liczba "<<szukanyk<<" znajduje sie pod indeksem: "<<index<<endl;
+    } else{
+        cout<<"Nie znaleziono liczby: "<<szukanyk<<endl;
+    }
+
     return 0;
 }
