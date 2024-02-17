@@ -17,3 +17,5 @@ int szuk_bin(int tablica[], int l, int p, int szukana);
 int szuk_liniowe(Element tablica[], int szuk_klucz, int rozmiar);
 
 int szuk_skok(int* lista, int n, int szukaj);
+
+int szuk_liniowe_z_war(Element tablica[], int szuk_klucz, int rozmiar);
