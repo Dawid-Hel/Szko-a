@@ -247,3 +247,33 @@ int main() {
 
     return 0;
 }
+
+
+int main() {
+    const int n = 12;
+    const int x = 12;
+    const int y = 25;
+    int tablica[n];
+    srand(time(NULL)); 
+
+    funkcja(tablica, n, x, y);
+ 
+    for(int i = 0; i < n; i++){
+        cout << tablica[i] << " ";
+    }
+    cout<<"\n";
+    
+    int szukanyk;
+    cout<<"Podaj szukana liczbe: ";
+    cin>> szukanyk;
+
+    int index = wysz_interpolacyjne(tablica, n, szukanyk); 
+    
+    if(index != -1) {
+        cout<<"Liczba "<< szukanyk<<" znajduje sie pod indeksem: "<<index<<endl;
+    }else{
+        cout<< "Nie znaleziono liczby: "<<szukanyk<<endl;
+    }
+
+    return 0;
+}
