@@ -19,3 +19,5 @@ int szuk_liniowe(Element tablica[], int szuk_klucz, int rozmiar);
 int szuk_skok(int* lista, int n, int szukaj);
 
 int szuk_liniowe_z_war(Element tablica[], int szuk_klucz, int rozmiar);
+
+int wysz_interpolacyjne(int* tablica, int n, int key);
