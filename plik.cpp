@@ -175,3 +175,19 @@ int szuk_liniowe_z_war(Element tablica[], int szuk_klucz, int rozmiar) {
         }
 
 }
+
+int wysz_interpolacyjne(int* tablica, int n, int key){
+    int p = 0;
+    int k = n - 1; 
+    while(p <= k){
+        int xp = p + ((key - tablica[p]) * (k - p) / (tablica[k] - tablica[p]));
+        if(key > tablica[xp]){
+            p = xp + 1;
+        }else if(key < tablica[xp]) {
+            k = xp - 1;
+        }else{
+            return xp; 
+        }
+    }
+    return -1; 
+}
